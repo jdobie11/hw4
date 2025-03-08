@@ -1,5 +1,4 @@
 class PlacesController < ApplicationController
-  before_action :require_login, only: [:index, :new, :create]
 
   def index
     @places = Place.all
