@@ -6,7 +6,7 @@ def index
     flash[:notice] = "Login to view homepage"
     redirect_to "/login"
   else
-    @places = Place.all
+    @places = Place.where({ "username" => session["username"]})
   
   end
 end

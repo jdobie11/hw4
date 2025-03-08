@@ -1,16 +1,51 @@
-<h1><%= @place["name"] %></h1>
-
-<h2>My Entries</h2>
-<% for entry in @entries %>
-  <h3><%= entry["title"] %></h3>
-  <h4><%= entry["occurred_on"] %></h4>
-  <p><%= entry["description"] %></p>
-<% end %>
-
-<p>
-  <a href="/entries/new?place_id=<%= @place["id"] %>">New Entry</a>
-</p>
-
-<p>
-  <a href="/places">Back to All Places</a>
-</p>
+<div class="container py-5">
+  <!-- Place Header with Background -->
+  <div class="position-relative mb-5">
+    <div class="bg-primary bg-gradient text-white p-4 rounded-3 shadow">
+      <h1 class="display-4"><%= @place["name"] %></h1>
+      <p class="lead mb-0">Your travel memories in one place</p>
+    </div>
+  </div>
+  
+  <!-- Entries Section -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">My Entries</h2>
+        <a href="/entries/new?place_id=<%= @place["id"] %>" class="btn btn-primary">
+          <i class="fas fa-plus-circle me-2"></i>New Entry
+        </a>
+      </div>
+      
+      <% if @entries.empty? %>
+        <div class="text-center p-5 bg-light rounded-3">
+          <p class="text-muted mb-3">No entries yet for this place</p>
+          <a href="/entries/new?place_id=<%= @place["id"] %>" class="btn btn-outline-primary">Add your first memory</a>
+        </div>
+      <% else %>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <% for entry in @entries %>
+            <div class="col">
+              <div class="card h-100 shadow-sm hover-shadow transition">
+                <div class="card-body">
+                  <h3 class="card-title fw-bold"><%= entry["title"] %></h3>
+                  <h6 class="card-subtitle mb-3 text-muted">
+                    <i class="far fa-calendar-alt me-2"></i><%= entry["occurred_on"] %>
+                  </h6>
+                  <p class="card-text"><%= entry["description"] %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <!-- Navigation -->
+  <div class="d-flex justify-content-between mt-5">
+    <a href="/places" class="btn btn-outline-secondary">
+      <i class="fas fa-arrow-left me-2"></i>Back to All Places
+    </a>
+  </div>
+</div>
