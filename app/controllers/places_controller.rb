@@ -1,12 +1,21 @@
 class PlacesController < ApplicationController
 
-  def index
+
+def index
+  if session["username"].nil?
+    flash[:notice] = "Login to view homepage"
+    redirect_to "/login"
+  else
     @places = Place.all
+  
   end
+end
+
 
   def show
+  
     @place = Place.find_by({ "id" => params["id"] })
-    @entries = Entry.where({ "place_id" => @place["id"] })
+    @entries = Entry.where({ "place_id" => @place["id"], "username" => session["username"]})
   end
 
   def new
@@ -15,6 +24,7 @@ class PlacesController < ApplicationController
   def create
     @place = Place.new
     @place["name"] = params["name"]
+    @place["username"] = session["username"]
     @place.save
     redirect_to "/places"
   end
