@@ -7,7 +7,13 @@ class UsersController < ApplicationController
     @user["username"] = params["username"]
     @user["email"] = params["email"]
     @user["password"] = BCrypt::Password.create(params["password"])
-    @user.save
-    redirect_to "/"
+
+    if @user.save
+      session["username"] = @user["username"]
+      redirect_to "/"
+    else
+      flash[:notice] = "Unable to create account"
+      redirect_to "/users/new"
+    end
   end
 end
