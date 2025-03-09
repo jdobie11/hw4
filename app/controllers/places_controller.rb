@@ -26,7 +26,7 @@ end
     @place["name"] = params["name"]
     @place["username"] = session["username"]
     @place.save
-    redirect_to "/places"
+    redirect_to "/places/#{@place.id}"
   end
 
 end
