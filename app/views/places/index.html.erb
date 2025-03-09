@@ -3,6 +3,13 @@
     <div class="col-12">
       <h1 class="display-5 fw-bold mb-4">Places</h1>
       
+       <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a href="/places/new" class="btn btn-primary">
+          <i class="fas fa-plus-circle me-2"></i>New Place
+        </a>
+      </div>
+
+
       <% if @places.empty? %>
         <div class="text-center p-5 bg-light rounded-3">
           <p class="text-muted">No places added yet</p>
@@ -19,11 +26,7 @@
         </div>
       <% end %>
       
-      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a href="/places/new" class="btn btn-primary">
-          <i class="fas fa-plus-circle me-2"></i>New Place
-        </a>
-      </div>
+     
     </div>
   </div>
 </div>
