@@ -29,20 +29,26 @@
         </div>
       <% else %>
         <div class="row row-cols-1 row-cols-md-3 g-4">
-          <% for entry in @entries %>
-            <div class="col">
-              <div class="card h-100 shadow-sm hover-shadow transition">
-                <div class="card-body">
-                  <h3 class="card-title fw-bold"><%= entry["title"] %></h3>
-                  <h6 class="card-subtitle mb-3 text-muted">
-                    <i class="far fa-calendar-alt me-2"></i><%= entry["occurred_on"] %>
-                  </h6>
-                  <p class="card-text"><%= entry["description"] %></p>
-                </div>
-              </div>
-            </div>
+  <% for entry in @entries %>
+    <div class="col">
+      <div class="card h-100 shadow-sm hover-shadow transition">
+        <div class="card-body">
+          <h3 class="card-title fw-bold"><%= entry["title"] %></h3>
+          <h6 class="card-subtitle mb-3 text-muted">
+            <i class="far fa-calendar-alt me-2"></i><%= entry["occurred_on"] %>
+          </h6>
+          <% if entry.uploaded_image.attached? %>
+            <%= image_tag entry.uploaded_image, class: "img-fluid" %>
           <% end %>
+          <div class="scrollable-content">
+            <p class="card-text"><%= entry["description"] %></p>
+          </div>
         </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
       <% end %>
     </div>
   </div>
