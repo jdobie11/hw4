@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session["username"] = @user["username"]
+      flash["notice"] = "Welcome!"
       redirect_to "/"
     else
       flash[:notice] = "Unable to create account"
