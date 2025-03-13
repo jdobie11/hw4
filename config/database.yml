@@ -23,6 +23,6 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  database: final_assignment_production
-  username: final_assignment
-  password: <%= ENV["final_assignment_password"] %>
+  database: tacogram_final_production
+  username: tacogram_final
+  password: <%= ENV["TACOGRAM_FINAL_DATABASE_PASSWORD"] %>
