@@ -3,7 +3,7 @@ class PlacesController < ApplicationController
 
 def index
   if session["username"].nil?
-    flash[:notice] = "Login to view homepage"
+    flash[:notice] = "Sign up or Login to view homepage"
     redirect_to "/login"
   else
     @places = Place.where({ "username" => session["username"]})
